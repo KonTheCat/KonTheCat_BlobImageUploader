@@ -1,7 +1,5 @@
 import os
-from werkzeug.utils import secure_filename
 from azure.storage.blob import BlobServiceClient, generate_blob_sas, BlobSasPermissions, BlobClient
-import string, random, requests
 from azure.mgmt.resource import ResourceManagementClient
 from azure.mgmt.storage import StorageManagementClient
 from azure.identity import DefaultAzureCredential
@@ -18,7 +16,7 @@ from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
 
 app = Flask(__name__, instance_relative_config=True)
 
-subscription = os.getenv("StorageAccountSubscriptionID")
+subscription = os.getenv('WEBSITE_OWNER_NAME').split('+')[0]
 account = os.getenv("StorageAccountName")
 container = os.getenv("StorageContainerName")
 cognitiveAccountName = os.getenv("CognitiveAccountName")
